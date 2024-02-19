@@ -1,12 +1,6 @@
-//COMPILE: gcc main.c -o graphidx 
-//RUN: ./itri datasets/LJ 4 100 4 50
-// parameters
-	// Dataset directory : "datasets/LJ"			The directory contains 2 binary files: deg.bin & adj.bin
-	// Memory percentage : "4"						How memory will be used with respect to graph size. Change the value to observe the effects.
-	// ALB Size			 : "100"					How many adjacency list will be grouped in each ALB. Change the value to observe the effects.
-	// Chunk Size(in KB) : "4"						Size of the buffer to read the items from the indexed ALB
-	// CPU distribution(%)  : "50"					How many cores will be assigned to join memory-memory data OR memory-disk data. Change the value to observe the effects.
-// Output is disabled currently. It can be enabled by removing the comment (//writeTri) at line 723, 745, & 815
+//COMPILE: gcc graphidx.c -o graphidx 
+//RUN: ./graphidx
+
 #include <stdio.h>
 #include "graphidx.h"
 
@@ -38,7 +32,7 @@ void create_directed_graph(){
 		{1, 20},
 		{1, 2}
 	};
-	FILE* fpr = fopen("../dataset/example_directed_graph.bin", "wb");
+	FILE* fpr = fopen("example_directed_graph.bin", "wb");
 
 	for(int i=0; i<24; i++){
 		fwrite(&i, 4, 1, fpr);
@@ -82,7 +76,7 @@ void create_undirected_graph(){
 		{2, 20, 21},
 		{2, 2, 20}
 	};
-	FILE* fpr = fopen("../dataset/example_undirected_graph.bin", "wb");
+	FILE* fpr = fopen("example_undirected_graph.bin", "wb");
 
 	for(int i=0; i<24; i++){
 		fwrite(&i, 4, 1, fpr);
@@ -112,10 +106,10 @@ int main() {
 		Graph dataset information
 		- Represented using adjacency list
 		- Data in binary format  */
-	// char* dataset_path = "../dataset/example_undirected_graph.bin";
-	// char* index_table_path = "../dataset/example_undirected_graphidx.bin";
-	char* dataset_path = "../dataset/example_directed_graph.bin";
-	char* index_table_path = "../dataset/example_directed_graphidx.bin";
+	// char* dataset_path = "example_undirected_graph.bin";
+	// char* index_table_path = "example_undirected_graphidx.bin";
+	char* dataset_path = "example_directed_graph.bin";
+	char* index_table_path = "example_directed_graphidx.bin";
 	int t = 1;    // Graph type: 0=undirected, 1=directed
 	int r = 5;  // #nodes in a subgraph
 	int N = 24;  // Number of nodes in the graph
