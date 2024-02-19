@@ -1,7 +1,15 @@
 # GraphIdx
 An Efficient Indexing Technique for Accelerating Graph Data Mining. It is an open-source C library that facilitates a memory efficient and on-the-fly indexing of large graphs. Many graph mining algorithms process large graphs with several passes to obtain the final results that suffers from huge I/O cost. GraphIdx indexes a block of graph data for a set of nodes based on the empirical evaluation of edges. Due to the indexed graph data, graph mining algorithms can access and process only the related nodes and their edges instead of a complete scan of the graph. Since GraphIdx enables graph mining algorithms to access only related data, the number of I/Os is significantly reduced. Moreover, GraphIdx accredits many graph mining algorithms can process data in parallel due to the indexed graph data.
 
+
+## Compile GraphIdx
+```
+gcc graphidx.c -o graphidx
+```
+
 # Usages
+
+## Include GraphIdx as a Header
 ```
 #include "graphidx.h"
 ```
